@@ -1,1 +1,21 @@
 type Query
+
+
+extend type Query {
+  configuration(target: ConfigurationTarget!): Configuration
+}
+
+enum Platform {
+  iOS
+  Android
+}
+input ConfigurationTargetPlatform {
+  platform: Platform!
+  version: String
+}
+input ConfigurationTarget {
+  platform: ConfigurationTargetPlatform
+  version: String!
+}
+
+type Configuration

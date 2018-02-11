@@ -19,3 +19,10 @@ input ConfigurationTarget {
 }
 
 type Configuration
+
+extend type Configuration {
+  features: Features!
+}
+type Features {
+  featureOne: Boolean!
+}

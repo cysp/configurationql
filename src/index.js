@@ -9,8 +9,17 @@ const {
   schema: upgradeSchema,
 } = require('./upgrade');
 
+const {
+  schema: configurationSchema,
+} = require('./configuration');
 
-exports.schema = upgradeSchema;
+
+exports.schema = mergeSchemas({
+  schemas: [
+    upgradeSchema,
+    configurationSchema,
+  ],
+});
 //
 //exports.schema = makeExecutableSchema({
 //  typeDefs: [fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8")],

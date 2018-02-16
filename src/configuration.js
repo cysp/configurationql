@@ -35,7 +35,6 @@ const resolve = (obj, target) => {
 };
 
 
-exports.resolver = (obj, args, context, info) => {
-  return resolve(configuration, args.target);
+exports.resolver = (obj, { target }, context, info) => {
+  return resolve(configuration, target);
 };
-

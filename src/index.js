@@ -1,14 +1,23 @@
 const fs = require('fs');
 const path = require('path');
-const { makeExecutableSchema } = require('graphql-tools');
-const { resolver: configurationResolver } = require('./configuration');
+const {
+  makeExecutableSchema,
+  mergeSchemas,
+} = require('graphql-tools');
+
+const {
+  schema: upgradeSchema,
+} = require('./upgrade');
 
 
-exports.schema = makeExecutableSchema({
-  typeDefs: [fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8")],
-  resolvers: {
-    Query: {
-      configuration: configurationResolver,
-    },
-  },
-});
+exports.schema = upgradeSchema;
+//
+//exports.schema = makeExecutableSchema({
+//  typeDefs: [fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8")],
+//  resolvers: {
+//    Query: {
+//      upgrade: upgradeResolver,
+//      configuration: configurationResolver,
+//    },
+//  },
+//});

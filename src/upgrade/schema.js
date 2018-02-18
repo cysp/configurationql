@@ -17,13 +17,9 @@ const {
 } = require('./types');
 
 
+const upgradeQueryField = require('./schema/query/upgrade');
+
 module.exports = new GraphQLSchema({
-  types: [
-    TargetType,
-    UpgradeSuggestionType,
-    SuggestedUpgradeType,
-    MandatoryUpgradeType,
-  ],
   query: new GraphQLObjectType({
     name: 'Query',
     fields: {

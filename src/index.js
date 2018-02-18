@@ -1,21 +1,19 @@
-const fs = require('fs');
-const path = require('path');
 const {
-  mergeSchemas,
-} = require('graphql-tools');
+  GraphQLSchema,
+  GraphQLObjectType,
+} = require('graphql');
 
-const {
-  schema: upgradeSchema,
-} = require('./upgrade');
+const upgradeQueryField = require('./upgrade/schema/query/upgrade');
 
-const {
-  schema: configurationSchema,
-} = require('./configuration');
+const configurationQueryField = require('./configuration/schema/query/configuration');
 
 
-exports.schema = mergeSchemas({
-  schemas: [
-    upgradeSchema,
-    configurationSchema,
-  ],
+exports.schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'Query',
+    fields: {
+      upgrade: upgradeQueryField,
+      configuration: configurationQueryField,
+    },
+  }),
 });

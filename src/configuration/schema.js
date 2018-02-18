@@ -18,6 +18,21 @@ const {
 const resolver = require('./resolver');
 
 
+module.exports = {
+  queryFields: {
+    configuration: {
+      type: ConfigurationType,
+      args: {
+        target: {
+          type: new GraphQLNonNull(TargetType),
+        },
+      },
+      resolve: resolver,
+    },
+  },
+};
+
+/*
 module.exports = new GraphQLSchema({
   types: [
     TargetType,
@@ -39,3 +54,4 @@ module.exports = new GraphQLSchema({
     },
   }),
 });
+*/

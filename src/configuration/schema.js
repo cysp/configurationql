@@ -23,7 +23,7 @@ module.exports = {
     configuration: {
       type: ConfigurationType,
       args: {
-          target: { type: new GraphQLNonNull(TargetType) },
+        target: { type: new GraphQLNonNull(TargetType) },
       },
       resolve: resolver,
     },

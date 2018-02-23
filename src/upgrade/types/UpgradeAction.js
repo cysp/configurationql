@@ -1,12 +1,12 @@
 const {
-    GraphQLEnumType,
+  GraphQLEnumType,
 } = require('graphql');
 
 
 module.exports = new GraphQLEnumType({
-    name: 'UpgradeAction',
-    values: {
-        SUGGEST: { },
-        FORCE: { },
-    },
+  name: 'UpgradeAction',
+  values: {
+    SUGGEST: { },
+    FORCE: { },
+  },
 });

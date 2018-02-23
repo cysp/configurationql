@@ -1,4 +1,4 @@
 module.exports = {
-    schema: require('./schema'),
-    types: require('./types'),
+  schema: require('./schema'),
+  types: require('./types'),
 };

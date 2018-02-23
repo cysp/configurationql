@@ -2,8 +2,6 @@ const {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLScalarType,
-  GraphQLString,
-  GraphQLUnionType,
 } = require('graphql');
 
 
@@ -17,18 +15,27 @@ const ColorType = new GraphQLScalarType({
   serialize: (value) => value,
 });
 
+const SeasonalColorPaletteType = new GraphQLObjectType({
+  name: 'SeasonalColorPalette',
+  fields: {
+    color: { type: new GraphQLNonNull(ColorType) },
+    lightColor: { type: new GraphQLNonNull(ColorType) },
+    darkColor: { type: new GraphQLNonNull(ColorType) },
+  }
+});
+
+const ColorPaletteType = new GraphQLObjectType({
+  name: 'ColorPalette',
+  fields: {
+    seasonal: { type: SeasonalColorPaletteType },
+  }
+});
+
 const ConfigurationType = new GraphQLObjectType({
   name: 'Configuration',
   fields: {
     features: { type: new GraphQLNonNull(FeaturesType) },
-    colors: { type: new GraphQLObjectType({
-      name: 'ColorPalette',
-      fields: {
-        seasonalColor: { type: ColorType },
-        lightSeasonalColor: { type: ColorType },
-        darkSeasonalColor: { type: ColorType },
-      }
-    })}
+    colors: { type: ColorPaletteType },
   },
 });
 
@@ -37,4 +44,6 @@ module.exports = {
   ConfigurationType,
   FeaturesType,
   ColorType,
+  ColorPaletteType,
+  SeasonalColorPaletteType,
 };

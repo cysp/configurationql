@@ -2,13 +2,16 @@ const {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLScalarType,
+  GraphQLBoolean,
 } = require('graphql');
 
 
-const {
-  FeaturesType,
-} = require('./features/types');
-
+const FeaturesType = new GraphQLObjectType({
+  name: 'Features',
+  fields: {
+    featureOne: { type: new GraphQLNonNull(GraphQLBoolean) },
+  },
+});
 
 const ColorType = new GraphQLScalarType({
   name: 'Color',

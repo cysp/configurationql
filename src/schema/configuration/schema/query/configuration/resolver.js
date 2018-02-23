@@ -9,6 +9,11 @@ const configuration = {
       },
     },
   },
+  colors: {
+    seasonalColor: '#123456',
+    lightSeasonalColor: '#012345',
+    darkSeasonalColor: '#234567',
+  }
 };
 
 

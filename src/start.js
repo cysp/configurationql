@@ -1,14 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const graphqlHTTP = require('express-graphql');
 const { schema } = require('./index');
+
+
+const port = process.env['PORT'] || 3000
 
 
 const app = express();
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
 
-app.listen(3000, () => {
-  console.log('Go to http://localhost:3000/graphiql to run queries!');
+app.listen(port, () => {
+  console.log("http://localhost:"+port+"/graphql");
 });

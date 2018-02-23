@@ -3,17 +3,17 @@ const {
   GraphQLObjectType,
 } = require('graphql');
 
-const upgradeQueryField = require('./upgrade/schema/query/upgrade');
+// const upgradeQueryField = require('./upgrade/schema/query/upgrade');
 
-const configurationQueryField = require('./configuration/schema/query/configuration');
+const configurationSchema = require('./schema/configuration/schema');
 
 
 exports.schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     fields: {
-      upgrade: upgradeQueryField,
-      configuration: configurationQueryField,
+      // upgrade: upgradeQueryField,
+      configuration: configurationSchema.query.configuration,
     },
   }),
 });

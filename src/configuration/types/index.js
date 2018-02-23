@@ -15,7 +15,11 @@ const FeaturesType = new GraphQLObjectType({
 
 const ColorType = new GraphQLScalarType({
   name: 'Color',
-  serialize: (value) => value,
+  serialize: (value) => {
+    if (/^#[0-9a-fA-F]{6}$/.test(value)) {
+      return value
+    }
+  },
 });
 
 const SeasonalColorPaletteType = new GraphQLObjectType({

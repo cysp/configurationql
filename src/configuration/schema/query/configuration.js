@@ -8,7 +8,7 @@ const {
 
 const {
     TargetType,
-} = require('../../../../types');
+} = require('../../../types');
 
 const {
     ConfigurationType,
